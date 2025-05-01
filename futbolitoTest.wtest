@@ -1,0 +1,16 @@
+import objetos.*
+
+describe "futbolito" {
+
+    method initialize() {
+        game.width(15)
+	    game.height(10)
+    }
+
+    test "Lionel patea la pelota" {
+        pelota.position(lionel.position())
+        lionel.patear()
+        assert.equals(pelota.position().x(), lionel.position().x() + 3)
+    //    assert.equals(pelota.position().y(), lionel.position().y())
+    }
+}
