@@ -78,3 +78,4 @@ object camisetaTitular {
 		personaje.camiseta(camisetaSuplente)
 	}
 }
+
