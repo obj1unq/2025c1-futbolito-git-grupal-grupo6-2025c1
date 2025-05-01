@@ -3,9 +3,10 @@ import wollok.game.*
 
 object lionel {
 	var property balon = pelota
+	var property camiseta = camisetaTitular
 	var property position = game.at(3,5)
 	
-	method image() = camiseta.image()//"lionel-titular.png"
+	method image() = camiseta.image()
 
 
 	method retroceder() {
@@ -15,6 +16,19 @@ object lionel {
 	method avanzar() {
 		position = game.at((game.width() - 1).min(position.x() + 1), position.y())
 	}
+
+	method cambiarCamiseta() {
+		self.validarPosicion()
+		camiseta.cambiar(self)
+	}
+	
+	method validarPosicion() {
+		if (not self.posicionParaCambiarCamiseta()) self.error(
+				"No esta en el borde izquierdo"
+			)
+	}
+
+	method posicionParaCambiarCamiseta() = self.position().x() == 0
 
 	method levantarla() {
 		balon.subir()
@@ -49,5 +63,19 @@ object pelota {
 
 }
 
+object camisetaSuplente {
+	method image() = "lionel-suplente.png"
+	
+	method cambiar(personaje) {
+		personaje.camiseta(camisetaTitular)
+	}
+}
 
+object camisetaTitular {
+	method image() = "lionel-titular.png"
+	
+	method cambiar(personaje) {
+		personaje.camiseta(camisetaSuplente)
+	}
+}
 
