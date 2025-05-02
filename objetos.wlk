@@ -21,6 +21,18 @@ object lionel {
 		self.validarPosicion()
 		camiseta.cambiar(self)
 	}
+
+	method patear() {
+		self.validarSiLionelTieneLaPelota()
+		const x = (game.width() - 1).min(balon.position().x() + 3)
+		balon.position(game.at(x, position.y()))
+	}
+
+	method validarSiLionelTieneLaPelota(){
+		if (position != balon.position()) {
+			self.error("No tengo la pelota")
+		}
+	}
 	
 	method validarPosicion() {
 		if (not self.posicionParaCambiarCamiseta()) self.error(
@@ -49,6 +61,7 @@ object lionel {
 }
 
 object pelota {
+
 	const property image = "pelota.png"
 	var property position = game.at(5, 5)
 	
@@ -59,8 +72,6 @@ object pelota {
 	method bajar() {
 		game.schedule(2000, { position = game.at(position.x(), position.y() - 1) })
 	}
-
-
 }
 
 object camisetaSuplente {
@@ -78,4 +89,3 @@ object camisetaTitular {
 		personaje.camiseta(camisetaSuplente)
 	}
 }
-
