@@ -1,16 +1,24 @@
 import objetos.*
+import pgmProgram.*
 
-describe "futbolito" {
+describe "el fulbo"{
 
     method initialize() {
         game.width(15)
 	    game.height(10)
     }
 
+    test "hagamos un taquito"{
+        pelota.position(lionel.position())
+        lionel.taquito()
+        assert.equals(pelota.position().x(), lionel.position().x()-2)
+        assert.equals(pelota.position().y(), lionel.position().y())
+    }
+
     test "Lionel patea la pelota" {
         pelota.position(lionel.position())
         lionel.patear()
         assert.equals(pelota.position().x(), lionel.position().x() + 3)
-    //    assert.equals(pelota.position().y(), lionel.position().y())
+        assert.equals(pelota.position().y(), lionel.position().y())
     }
 }
