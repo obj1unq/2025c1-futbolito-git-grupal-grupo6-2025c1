@@ -1,3 +1,4 @@
+
 import wollok.game.*
 import objetos.*
 
@@ -7,12 +8,12 @@ program futbolito {
 	game.cellSize(40)
 	game.width(15)
 	game.height(10)
-
-	keyboard.enter().onPressDo({ game.say(lionel, "Vamos Argentina!") })
-	keyboard.left().onPressDo({ lionel.retroceder() })
-	keyboard.right().onPressDo({ lionel.avanzar() })
-	keyboard.p().onPressDo({ lionel.levantarla() })
+	keyboard.enter().onPressDo({game.say(lionel, "Vamos Argentina!")})
+	keyboard.left().onPressDo({lionel.retroceder()})
+	keyboard.right().onPressDo({lionel.avanzar()})
+	keyboard.p().onPressDo({lionel.patear()})
+	keyboard.l().onPressDo({ lionel.levantarla() })
 	keyboard.t().onPressDo({lionel.taquito()})
-	
+	keyboard.c().onPressDo({ lionel.cambiarCamiseta() })
 	game.start()
 }

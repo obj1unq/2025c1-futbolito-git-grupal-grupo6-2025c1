@@ -3,9 +3,10 @@ import wollok.game.*
 
 object lionel {
 	var property balon = pelota
+	var property camiseta = camisetaTitular
 	var property position = game.at(3,5)
 	
-	method image() = camiseta.image()//"lionel-titular.png"
+	method image() = camiseta.image()
 
 
 	method retroceder() {
@@ -15,6 +16,31 @@ object lionel {
 	method avanzar() {
 		position = game.at((game.width() - 1).min(position.x() + 1), position.y())
 	}
+
+	method cambiarCamiseta() {
+		self.validarPosicion()
+		camiseta.cambiar(self)
+	}
+
+	method patear() {
+		self.validarSiLionelTieneLaPelota()
+		const x = (game.width() - 1).min(balon.position().x() + 3)
+		balon.position(game.at(x, position.y()))
+	}
+
+	method validarSiLionelTieneLaPelota(){
+		if (position != balon.position()) {
+			self.error("No tengo la pelota")
+		}
+	}
+	
+	method validarPosicion() {
+		if (not self.posicionParaCambiarCamiseta()) self.error(
+				"No esta en el borde izquierdo"
+			)
+	}
+
+	method posicionParaCambiarCamiseta() = self.position().x() == 0
 
 	method levantarla() {
 		balon.subir()
@@ -35,6 +61,7 @@ object lionel {
 }
 
 object pelota {
+
 	const property image = "pelota.png"
 	var property position = game.at(5, 5)
 	
@@ -45,9 +72,20 @@ object pelota {
 	method bajar() {
 		game.schedule(2000, { position = game.at(position.x(), position.y() - 1) })
 	}
-
-
 }
 
+object camisetaSuplente {
+	method image() = "lionel-suplente.png"
+	
+	method cambiar(personaje) {
+		personaje.camiseta(camisetaTitular)
+	}
+}
 
-
+object camisetaTitular {
+	method image() = "lionel-titular.png"
+	
+	method cambiar(personaje) {
+		personaje.camiseta(camisetaSuplente)
+	}
+}
