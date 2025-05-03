@@ -43,6 +43,7 @@ object lionel {
 	method posicionParaCambiarCamiseta() = self.position().x() == 0
 
 	method levantarla() {
+		self.validarSiLionelTieneLaPelota()
 		balon.subir()
 		balon.bajar()
 	}
