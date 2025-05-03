@@ -7,18 +7,12 @@ program futbolito {
 	game.cellSize(40)
 	game.width(15)
 	game.height(10)
-<<<<<<< HEAD
+
 	keyboard.enter().onPressDo({ game.say(lionel, "Vamos Argentina!") })
 	keyboard.left().onPressDo({ lionel.retroceder() })
 	keyboard.right().onPressDo({ lionel.avanzar() })
 	keyboard.p().onPressDo({ lionel.levantarla() })
-	
-=======
-	keyboard.enter().onPressDo({game.say(lionel, "Vamos Argentina!")})
-	keyboard.left().onPressDo({lionel.retroceder()})
-	keyboard.right().onPressDo({lionel.avanzar()})
 	keyboard.t().onPressDo({lionel.taquito()})
-
->>>>>>> main
+	
 	game.start()
 }
